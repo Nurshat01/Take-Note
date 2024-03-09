@@ -1,22 +1,35 @@
-
 const express = require('express');
-const api = require('./routes/api');
-const html = require('./routes/html');
+const path = require('path');
 
-const PORT = process.env.PORT || 3001;
+const api = require('./routes/index');
+
+// Define global strings
+const STRINGS = {
+    PUBLIC_FOLDER: 'public',
+    NOTES_HTML_PATH: './public/assets/notes.html',
+    INDEX_HTML_PATH: './public/assets/index.html',
+    LOCALHOST_URL: 'http://localhost:',
+};
 
 const app = express();
-
-//middleware for express
-app.use(express.urlencoded({ extended: false}));
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static("public"));
+app.use(express.static(STRINGS.PUBLIC_FOLDER));
 
-app.use(api);
-app.use(html);
+app.use('/api', api);
+
+// GET route for the notes page
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, STRINGS.NOTES_HTML_PATH));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, STRINGS.INDEX_HTML_PATH));
+});
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`App listening at ${STRINGS.LOCALHOST_URL}${PORT}`);
 });
