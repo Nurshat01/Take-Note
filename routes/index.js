@@ -9,7 +9,7 @@ const NOTE_ADDED_SUCCESSFULLY = 'Note added successfully';
 const NOTE_DELETED_SUCCESSFULLY = 'Note deleted successfully';
 const DB_JSON_PATH = './db/db.json';
 const GET_NOTE = '/notes';
-const POST_NOTE = '/notes'; // Fixed variable name
+const POST_NOTE = '/notes'; 
 const DELETE_NOTE_BY_ID = '/notes/:id';
 
 router.get(GET_NOTE, (req, res) => {
@@ -21,7 +21,7 @@ router.get(GET_NOTE, (req, res) => {
         });
 });
 
-router.post(POST_NOTE, (req, res) => { // Fixed route variable name
+router.post(POST_NOTE, (req, res) => { 
     const { title, text } = req.body;
 
     if (!title || !text) {

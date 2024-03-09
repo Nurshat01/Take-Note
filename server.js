@@ -3,7 +3,6 @@ const path = require('path');
 
 const api = require('./routes/index');
 
-// Define global strings
 const STRINGS = {
     PUBLIC_FOLDER: 'public',
     NOTES_HTML_PATH: './public/assets/notes.html',
@@ -21,7 +20,6 @@ app.use(express.static(STRINGS.PUBLIC_FOLDER));
 
 app.use('/api', api);
 
-// GET route for the notes page
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, STRINGS.NOTES_HTML_PATH));
 });
