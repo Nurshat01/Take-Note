@@ -28,3 +28,8 @@ The Note Taker App is a simple web application built with Express that allows us
 
    ```bash
    git clone https://github.com/Nurshat01/Note-Taker-App.git
+
+## Deployment 
+
+ ```bash
+   Deployment link: https://take0note-f615e8080d7e.herokuapp.com/
